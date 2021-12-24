@@ -4,24 +4,34 @@
  */
 package Classes;
 
+import java.util.Scanner;
+
 /**
  *
  * @author LuisO
  */
 public class Question {
-    String question;
-    String answer[];
-    int correct_answer;
+    private final String question;
+    private final String answer[];
+    private final int correct_answer;
     
     public Question(String question, String[] answer, int correct_answer ){
     this.question = question;
     this.answer =  answer;
     this.correct_answer = correct_answer;
     }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public int getCorrect_answer() {
+        return correct_answer;
+    }
     
     public boolean CheckAnswer(int picked){
        
-        if(picked == this.correct_answer){
+        if(picked == correct_answer){
             System.out.println("Eleccion correcta");
             return true;
         }else{
@@ -31,8 +41,31 @@ public class Question {
         
     } 
     
-    public String[] getAnswer(){
-        System.out.println(this.question + " - " +  this.answer[0] + " - " +  this.answer[1] + " - " +  this.answer[2] + " - " +  this.answer[3] );
-        return this.answer;
+    public boolean getQuestionAndAnswer(){
+        int i = 1;
+        Scanner scan = new Scanner (System.in);
+        System.out.println(question);
+        for (String ans: answer) {
+            System.out.println(i + ") " + ans );
+            i++;
+        }
+        System.out.println("Respuesta: ");
+        int select = scan.nextInt();
+
+        boolean correct = true;
+        do {
+            if(select > 0 && select < 5){
+            return CheckAnswer(select);
+
+            }else{
+            System.out.println("Opcion desconocida ingrese una valida:");
+            select = scan.nextInt();
+            correct = false;
+            }
+            
+        } while (correct = true);
+        
+        return false;
+        
     }
 }

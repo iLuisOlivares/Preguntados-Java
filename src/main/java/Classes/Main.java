@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Classes;
-
+import java.util.Scanner;
 /**
  *
  * @author LuisO
@@ -30,7 +30,7 @@ public class Main {
        new Question("¿De que color es Clifford el perro gigante?", new String[]{"Rojo","Amarillo","Verde","Azul"}, 1),
        new Question("¿Quién dijo la frase ‘Yo soy tu padre’?", new String[]{"Yoda","Han Solo","Luke Skywalker","Darth Vader"}, 4)};
        //Create Category Entertainment
-       Category entertainment = new Category(1,"Entretenimiento",questionsE,level_1); 
+       Category entertainment = new Category(1,"Entretenimiento",questionsE); 
        
        //Create Sports questions 
        Question[] questionsS ={
@@ -40,7 +40,7 @@ public class Main {
        new Question("¿Quién se considera el mejor jugador de baloncesto de todos los tiempos?", new String[]{"Michael Jordan","Stephen Curry","Lebron James","James Harden"}, 1),
        new Question("¿Cada cuántos años se celebran los Juegos Olímpicos?", new String[]{"1 Año","6 Años","4 años","2 Años"}, 3)};
        //Create Category Sport
-       Category sports = new Category(1,"Deporte",questionsS,level_1); 
+       Category sport = new Category(1,"Deporte",questionsS); 
         
        //Create Categorys - level 2
        
@@ -52,17 +52,17 @@ public class Main {
        new Question("¿Qué obra NO pertenece a Shakespeare?", new String[]{"Hamlet","Romeo y Julieta","Julio Cesar","Don quijote de la mancha"}, 4),
        new Question("¿Quién era la diosa de la sabiduría en la mitología griega?", new String[]{"Ares","Kratos","Zeus","Demeter"}, 4)};
        //Create Category Literature and Art
-       Category artAndLiterature = new Category(2,"Arte y Literatura",questionsAL,level_2); 
+       Category artAndLiterature = new Category(2,"Arte y Literatura",questionsAL); 
        
        //Create Geography questions 
        Question[] questionsG ={
        new Question("¿Que pais no tiene mar? ", new String[]{"Colombia","Bolivia","Argentina","Venezuela"}, 2),
        new Question("¿Cuál de estos países NO se encuentra ubicado en sudamérica?", new String[]{"Ecuador","Peru","Brasil","Haiti"}, 4),
-       new Question("¿Con qué objeto se asocia a Italia visualmente?", new String[]{"Una bota","Una cometa","Una mano","Brasil"}, 2),
+       new Question("¿Con qué objeto se asocia a Italia visualmente?", new String[]{"Una bota","Una cometa","Una mano","Brasil"}, 1),
        new Question("¿En qué continente se encuentra España?", new String[]{"Asia","America","Europa","Africa"}, 3),
        new Question("¿Capital de alemania?", new String[]{"Berlin","Hamburgo","Munich","Stuttgart"}, 1)};
        //Create Category Geography
-       Category geography = new Category(2,"Geografia",questionsG,level_2); 
+       Category geography = new Category(2,"Geografia",questionsG); 
         
  
         
@@ -76,7 +76,7 @@ public class Main {
        new Question("¿Dónde surgió la filosofía?", new String[]{"Roma","Egipto","Islandia","Grecia"}, 4),
        new Question("¿Qué ciudad quedó partida en dos tras la Segunda Guerra Mundial?", new String[]{"Whasington","Paris","Moscu","Berlin"}, 4)};
        //Create Category History
-       Category history = new Category(3,"Historia",questionsH,level_3); 
+       Category history = new Category(3,"Historia",questionsH); 
        
        //Create Cience questions 
        Question[] questionsC ={
@@ -86,7 +86,7 @@ public class Main {
        new Question("Las 'itis' nos indican que algo está", new String[]{"Quemado","Cortado","Hinchado","Infectado"}, 3),
        new Question("¿Qué órgano del cuerpo es el más dañado por el consumo excesivo de alcohol? ", new String[]{"Pancreas","Estomago","Riñon","Higado"}, 4)};
        //Create Category Cience
-       Category cience = new Category(3,"Ciencia",questionsC,level_3); 
+       Category cience = new Category(3,"Ciencia",questionsC); 
 
         
        //Create Categorys - level 4
@@ -99,7 +99,7 @@ public class Main {
        new Question("¿Cómo se llamaba el cantante de Queen?", new String[]{"Bon Scott","Bruce Dickinson","Ozzy Osbourne","Freddie Mercury"}, 4),
        new Question("¿Cómo se llamaba el primer gato de Los Simpsons?", new String[]{"Cuate","Bola de nieve","Pulgoso","Pequeño ayudante de santa"}, 2)};
        //Create Category Entertainment2
-       Category entertainment2 = new Category(4,"Entretenimiento nivel 2",questionsE2,level_4); 
+       Category entertainment2 = new Category(4,"Entretenimiento nivel 2",questionsE2); 
        
        //Create Sport2 questions 
        Question[] questionsS2 ={
@@ -109,7 +109,7 @@ public class Main {
        new Question("¿Que Color no pertenece a los colores de los anillos olímpicos? ", new String[]{"Azul","Rojo","Dorado","Negro"}, 3),
        new Question("¿Qué Arma no se utiliza en esgrima?", new String[]{"Espada","Florete","Falcata","Sable"}, 3)};
        //Create Category Sport2
-       Category sport2 = new Category(4,"Deporte nivel 2",questionsS2,level_4); 
+       Category sport2 = new Category(4,"Deporte nivel 2",questionsS2); 
         
 
        //Create Categorys - level 5
@@ -122,7 +122,7 @@ public class Main {
        new Question("¿A qué diosa está dedicado el Partenón?", new String[]{"Atenea","Hera","Artemisa","Afrodita"}, 1),
        new Question("¿Quién fue el primer presidente de los Estados Unidos? ", new String[]{"Abraham Lincoln","Thomas Jefferson","Jhon Adams","George Washington"}, 4)};
        //Create Category History2
-       Category history2 = new Category(5,"Historia 2 Nivel",questionsH2,level_5); 
+       Category history2 = new Category(5,"Historia 2 Nivel",questionsH2); 
        
        //Create Cience questions 
        Question[] questionsC2 ={
@@ -132,9 +132,48 @@ public class Main {
        new Question("¿Qué es la filofobia?", new String[]{"Miedo a enamorarse","Miedo a la sabiduria","Miedo al pensamiento","Ninguna de las anteriores"}, 1),
        new Question("¿Cuántos millones de años se estima que le restan de vida a nuestro Sol?", new String[]{"6500","7500","5500","8500"}, 3)};
        //Create Category Cience2
-       Category cience2 = new Category(5,"Ciencia 2 Nivel",questionsC2,level_5); 
+       Category cience2 = new Category(5,"Ciencia 2 Nivel",questionsC2); 
+       
+       //Create Round 
+       Round round_1 = new Round(1,new Category[]{entertainment,sport},level_1);
+       Round round_2 = new Round(2,new Category[]{artAndLiterature,geography},level_2);
+       Round round_3 = new Round(3,new Category[]{history,cience},level_3);
+       Round round_4 = new Round(4,new Category[]{entertainment2,sport2},level_4);
+       Round round_5 = new Round(5,new Category[]{history2,cience2},level_5);
         
-        System.out.println("Bienvenido a preguntados/n");
+       Round[] arrRound = {round_1,round_2,round_3,round_4,round_5};
+       
+       Scanner scan = new Scanner (System.in);
+        System.out.println("Bienvenido a preguntados\nDigita la opcion que desea: \n1.Iniciar Nuevo juego \n2.Ver puntajes \nRespuesta:>");
+        int select = scan.nextInt();
+        
+        boolean correct = true;
+        do {
+            switch (select){
+                case 1 -> {
+                    System.out.println("Por Favor ingrese su nombre: ");
+                    String name = scan.next();
+                    //create player
+                    Player player1 = new Player(name);
+                    
+                    for(Round round: arrRound ){
+                        round.selectCategory();
+                        
+                    }
+                }
+
+                
+                case 2 -> {
+                }
+                default -> {
+                    correct = false;
+                    System.out.println("Opcion desconocida ingrese una valida:");
+                    select = scan.nextInt();
+                }
+                }
+            
+        } while (correct = true);
+        
         
 }
 }

@@ -12,23 +12,35 @@ public class Category {
     int level;
     String category_name;
     Question question_arr[];
-    Reward reward;
     
-    public Category(int level,String category_name,Question[] question_arr,Reward reward){
+    public Category(int level,String category_name,Question[] question_arr){
         this.level = level;
         this.category_name = category_name;
         this.question_arr = question_arr;
-        this.reward = reward;
     }
     
-    public Question SelectRandomQuestion(){
+    public boolean SelectRandomQuestion(){
         int numero = (int)(Math.random()*3);
-        System.out.println(numero);
-        return this.question_arr[numero];
+       return question_arr[numero].getQuestionAndAnswer();
+        
     }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public String getCategory_name() {
+        return category_name;
+    }
+
+    public Question[] getQuestion_arr() {
+        return question_arr;
+    }
+    
     
     public void ShowInfo(int i){
-        System.out.println(this.level+ " - " + this.category_name + " - " + this.question_arr[i].getAnswer() + " - " + this.reward.points);
+        System.out.println(this.level+ " - " + this.category_name);
+        question_arr[i].getQuestionAndAnswer();
     }
     
 }

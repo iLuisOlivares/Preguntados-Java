@@ -9,15 +9,28 @@ package Classes;
  * @author LuisO
  */
 public class Reward {
-    int id_reward;
-    String reward_name;
-    int points;
+    private int id_reward;
+    private String reward_name;
+    private int points;
 
     public Reward(int id_reward, String reward_name, int points) {
         this.id_reward = id_reward;
         this.reward_name = reward_name;
         this.points = points;
     }
+
+    public int getId_reward() {
+        return id_reward;
+    }
+
+    public String getReward_name() {
+        return reward_name;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+    
  
     
 }

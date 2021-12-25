@@ -33,7 +33,7 @@ public class Round {
 
         boolean correct = true;
         do {
-            if (select > 0 && select < 2) {
+            if (select > 0 && select < 3) {
                 return categorys[select - 1].SelectRandomQuestion();
             } else if(select == 3){
                 return 3;

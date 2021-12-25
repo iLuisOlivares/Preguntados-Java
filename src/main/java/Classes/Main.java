@@ -145,98 +145,112 @@ public class Main {
         //Create a file scores
         File scores = new File("score.txt");
 
-       boolean correct = false;
+        boolean correct = false;
         do {
-             Scanner scan = new Scanner(System.in);
-            System.out.println("\nBienvenido a preguntados\nDigita la opcion que desea: \n1.Iniciar Nuevo juego \n2.Ver puntajes\n3.Salir \nRespuesta:");
+            Scanner scan = new Scanner(System.in);
+            System.out.println("\nEstas jugando preguntados\nDigita la opcion que desea: \n1.Iniciar Nuevo juego \n2.Ver puntajes\n3.Salir \nRespuesta:");
             int select = scan.nextInt();
 
-               switch (select) {
+            switch (select) {
 
-            case 1:
-                System.out.println("\nPor Favor ingrese su nombre: ");
-                String name = scan.next();
+                case 1:
+                    System.out.println("\nPor Favor ingrese su nombre: ");
+                    String name = scan.next();
 
-                //create player
-                Player player1 = new Player(name);
-                for (Round round : arrRound) {
+                    //create player
+                    Player player1 = new Player(name);
+                    //Level Count
+                    int level = 0;
+                    for (Round round : arrRound) {
+                        player1.getScore();
+                        int itsCorrect = round.selectCategory();
+                        if (itsCorrect == 1) {
+                            player1.setScore(round.getReward());
+                            level++;
+                        } else if (itsCorrect == 2) {
+                            player1.deleteScore();
+                            System.out.println("\nPerdiste, Juego Finalizado\nTu puntuacion:");
+
+                            try {
+                                FileWriter fw = new FileWriter(scores.getAbsoluteFile(), true);
+                                PrintWriter pw = new PrintWriter(fw);
+
+                                pw.println(player1.toString());
+                                pw.close();
+                            } catch (IOException e) {
+                                System.out.println(e);
+                            }
+                            break;
+                        } else {
+                            System.out.println("\nDeacuerdo, Te has retirado\nTu puntuacion:");
+
+                            try {
+                                FileWriter fw = new FileWriter(scores.getAbsoluteFile(), true);
+                                PrintWriter pw = new PrintWriter(fw);
+
+                                pw.println(player1.toString());
+                                pw.close();
+                            } catch (IOException e) {
+                                System.out.println(e);
+                            }
+                            break;
+
+                        }
+
+                    }
+                    if (level == 5) {
+                        System.out.println("\nFelicidades, Has acertado todas las preguntas\nTu puntuacion:");
+                        try {
+                            FileWriter fw = new FileWriter(scores.getAbsoluteFile(), true);
+                            PrintWriter pw = new PrintWriter(fw);
+
+                            pw.println(player1.toString());
+                            pw.close();
+                        } catch (IOException e) {
+                            System.out.println(e);
+                        }
+                    }
                     player1.getScore();
-                    int itsCorrect = round.selectCategory();
-                    if (itsCorrect == 1) {
-                        player1.setScore(round.getReward());
-                    } else if(itsCorrect == 2) {
-                        player1.deleteScore();
-                        System.out.println("Perdiste, Juego Finalizado\nTu puntuacion:");
-                        try {
-                            FileWriter fw =  new FileWriter(scores.getAbsoluteFile(), true);
-                            PrintWriter pw = new PrintWriter(fw);
+                    correct = true;
+                    break;
 
-                            pw.println(player1.toString());
-                            pw.close();
-                        } catch (IOException e) {
-                            System.out.println(e);
+                case 2:
+                    System.out.println("puntuaciones");
+                    File f = new File("score.txt");
+
+                    try {
+                        FileReader fr = new FileReader(f);
+                        BufferedReader br = new BufferedReader(fr);
+
+                        String linea = br.readLine();
+
+                        System.out.println();
+
+                        while (linea != null) {
+                            System.out.println(linea);
+                            linea = br.readLine();
                         }
-                        break;
-                    } else{
-                        System.out.println("Deacuerdo, Te has retirado\nTu puntuacion:");
-                        try {
-                            FileWriter fw =  new FileWriter(scores.getAbsoluteFile(), true);
-                            PrintWriter pw = new PrintWriter(fw);
 
-                            pw.println(player1.toString());
-                            pw.close();
-                        } catch (IOException e) {
-                            System.out.println(e);
-                        }
-                        break;
-                        
+                        br.close();
+                    } catch (IOException e) {
+                        System.out.println("No hay puntuaciones por el momento");;
                     }
+                    correct = true;
+                    break;
 
-                }
-                player1.getScore();
-                correct = true;
+                case 3:
+                    System.out.println("\n\nMuchas gracias por jugar");
+                    correct = false;
+                    break;
 
-                break;
+                default:
+                    System.out.println("\nOpcion invalida, Digite una respuesta valida");
+                    correct = true;
+                    break;
 
-            case 2:
-                System.out.println("puntuaciones");
-                File f = new File("score.txt");
+            }
 
-                try {
-                    FileReader fr = new FileReader(f);
-                    BufferedReader br = new BufferedReader(fr);
-
-                    String linea = br.readLine();
-
-                    System.out.println();
-
-                    while (linea != null) {
-                        System.out.println(linea);
-                        linea = br.readLine();
-                    }
-
-                    br.close();
-                } catch (IOException e) {
-                    System.out.println(e);
-                }
-                correct = true;
-                break;
-                
-            case 3: 
-                System.out.println("\n\nMuchas gracias por jugar");
-                correct = false;
-                break;
-                
-            default:
-                System.out.println("\nOpcion invalida, Digite una respuesta valida");
-                correct = true;
-                break;
-
-        }
-            
         } while (correct);
-        
-     
 
         System.out.println("\nJuego finalizado");
 

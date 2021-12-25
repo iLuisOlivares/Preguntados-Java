@@ -38,7 +38,7 @@ public class Round {
         do {
             if (select > 0 && select < 3) {
                 //Show a random question depends the category picked
-                return categorys[select - 1].SelectRandomQuestion();
+                return categorys[select - 1].selectRandomQuestion();
             } else if (select == 3) {
                 //if we wanted retire
                 return 3;
@@ -59,17 +59,17 @@ public class Round {
     }
 
     //Method that show the category by round
-    public void ShowAllCategorys() {
+    public void showAllCategorys() {
         for (var category : categorys) {
             System.out.println("Round{" + "level=" + level + ", categorys=" + category.getCategory_name() + ", reward=" + reward.getPoints() + '}');
-            category.SelectRandomQuestion();
+            category.selectRandomQuestion();
         }
     }
 
     //Method that Show category info
-    public void ShowCategoryInfo(int selected) {
+    public void showCategoryInfo(int selected) {
         System.out.println("Round{" + "level=" + level + ", categorys=" + categorys[selected - 1].category_name + ", reward=" + reward.getPoints() + '}');
-        categorys[selected - 1].SelectRandomQuestion();
+        categorys[selected - 1].selectRandomQuestion();
 
     }
 

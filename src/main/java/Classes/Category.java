@@ -24,7 +24,7 @@ public class Category {
     }
 
     //Select a random question
-    public int SelectRandomQuestion() {
+    public int selectRandomQuestion() {
         
         Random r = new Random();
         //select a random number 0-4
@@ -48,7 +48,7 @@ public class Category {
     }
 
     //Print the category infromation
-    public void ShowInfo(int i) {
+    public void showInfo(int i) {
         System.out.println(this.level + " - " + this.category_name);
         question_arr[i].getQuestionAndAnswer();
     }

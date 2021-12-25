@@ -33,7 +33,7 @@ public class Question {
     }
 
     //Check if the answer picked its correct
-    public int CheckAnswer(int picked) {
+    public int checkAnswer(int picked) {
 
         if (picked == correct_answer) {
             System.out.println("\nEleccion correcta\n");
@@ -62,7 +62,7 @@ public class Question {
         do {
             if (select > 0 && select < 5) {
                 //check if answer is correct 
-                return CheckAnswer(select);
+                return checkAnswer(select);
 
             } else {
                 System.out.println("\nOpcion desconocida ingrese una valida:");

@@ -30,19 +30,19 @@ public class Question {
         return correct_answer;
     }
 
-    public boolean CheckAnswer(int picked) {
+    public int CheckAnswer(int picked) {
 
         if (picked == correct_answer) {
             System.out.println("\nEleccion correcta\n");
-            return true;
+            return 1;
         } else {
             System.out.println("\nEleccion incorrecta\n");
-            return false;
+            return 2;
         }
 
     }
 
-    public boolean getQuestionAndAnswer() {
+    public int getQuestionAndAnswer() {
         int i = 1;
         Scanner scan = new Scanner(System.in);
         System.out.println("\n"+question);
@@ -66,7 +66,7 @@ public class Question {
 
         } while (correct = true);
 
-        return false;
+        return 2;
 
     }
 }

@@ -22,28 +22,30 @@ public class Round {
         this.reward = reward;
     }
 
-    public boolean selectCategory() {
+    public int selectCategory() {
         Scanner scan = new Scanner(System.in);
         System.out.println("\nSeleccione una categoria");
         for (int i = 0; i < categorys.length; i++) {
             System.out.println((i + 1) + ")" + categorys[i].getCategory_name());
         }
-        System.out.println("Respuesta:");
+        System.out.println("3)Retirarse e irme con la recompensa\nRespuesta:");
         int select = scan.nextInt();
 
         boolean correct = true;
         do {
-            if (select > 0 && select < 3) {
+            if (select > 0 && select < 2) {
                 return categorys[select - 1].SelectRandomQuestion();
-            } else {
+            } else if(select == 3){
+                return 3;
+            }else{
                 System.out.println("\nOpcion desconocida ingrese una valida:");
                 select = scan.nextInt();
                 correct = false;
             }
 
-        } while (correct = true);
+        } while (correct);
 
-        return false;
+        return 3;
     }
 
     public int getReward() {

@@ -21,6 +21,11 @@ public class Player {
         System.out.println("\n" + player_name + " - Score: " + score);
     }
 
+    @Override
+    public String toString() {
+        return "nombre del jugador = " + player_name + ", Puntaje = " + score;
+    }
+
     public void deleteScore(){
         score = 0;
     }

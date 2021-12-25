@@ -22,7 +22,7 @@ public class Category {
         this.question_arr = question_arr;
     }
 
-    public boolean SelectRandomQuestion() {
+    public int SelectRandomQuestion() {
         Random r = new Random();
         int numero = r.nextInt(5);
         return question_arr[numero].getQuestionAndAnswer();

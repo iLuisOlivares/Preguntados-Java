@@ -4,6 +4,12 @@
  */
 package Classes;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 /**
@@ -136,11 +142,16 @@ public class Main {
 
         Round[] arrRound = {round_1, round_2, round_3, round_4, round_5};
 
-        Scanner scan = new Scanner(System.in);
-        System.out.println("\nBienvenido a preguntados\nDigita la opcion que desea: \n1.Iniciar Nuevo juego \n2.Ver puntajes \nRespuesta:");
-        int select = scan.nextInt();
+        //Create a file scores
+        File scores = new File("score.txt");
 
-        switch (select) {
+       boolean correct = false;
+        do {
+             Scanner scan = new Scanner(System.in);
+            System.out.println("\nBienvenido a preguntados\nDigita la opcion que desea: \n1.Iniciar Nuevo juego \n2.Ver puntajes\n3.Salir \nRespuesta:");
+            int select = scan.nextInt();
+
+               switch (select) {
 
             case 1:
                 System.out.println("\nPor Favor ingrese su nombre: ");
@@ -150,26 +161,82 @@ public class Main {
                 Player player1 = new Player(name);
                 for (Round round : arrRound) {
                     player1.getScore();
-                    boolean itsCorrect = round.selectCategory();
-                    if (itsCorrect) {
+                    int itsCorrect = round.selectCategory();
+                    if (itsCorrect == 1) {
                         player1.setScore(round.getReward());
-                    }else{
+                    } else if(itsCorrect == 2) {
                         player1.deleteScore();
                         System.out.println("Perdiste, Juego Finalizado\nTu puntuacion:");
+                        try {
+                            FileWriter fw =  new FileWriter(scores.getAbsoluteFile(), true);
+                            PrintWriter pw = new PrintWriter(fw);
+
+                            pw.println(player1.toString());
+                            pw.close();
+                        } catch (IOException e) {
+                            System.out.println(e);
+                        }
                         break;
+                    } else{
+                        System.out.println("Deacuerdo, Te has retirado\nTu puntuacion:");
+                        try {
+                            FileWriter fw =  new FileWriter(scores.getAbsoluteFile(), true);
+                            PrintWriter pw = new PrintWriter(fw);
+
+                            pw.println(player1.toString());
+                            pw.close();
+                        } catch (IOException e) {
+                            System.out.println(e);
+                        }
+                        break;
+                        
                     }
 
                 }
                 player1.getScore();
+                correct = true;
+
                 break;
 
             case 2:
                 System.out.println("puntuaciones");
+                File f = new File("score.txt");
+
+                try {
+                    FileReader fr = new FileReader(f);
+                    BufferedReader br = new BufferedReader(fr);
+
+                    String linea = br.readLine();
+
+                    System.out.println();
+
+                    while (linea != null) {
+                        System.out.println(linea);
+                        linea = br.readLine();
+                    }
+
+                    br.close();
+                } catch (IOException e) {
+                    System.out.println(e);
+                }
+                correct = true;
                 break;
+                
+            case 3: 
+                System.out.println("\n\nMuchas gracias por jugar");
+                correct = false;
+                break;
+                
             default:
+                System.out.println("\nOpcion invalida, Digite una respuesta valida");
+                correct = true;
                 break;
 
         }
+            
+        } while (correct);
+        
+     
 
         System.out.println("\nJuego finalizado");
 

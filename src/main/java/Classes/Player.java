@@ -10,13 +10,15 @@ package Classes;
  */
 public class Player {
 
-    String player_name;
-    int score;
+    private final String player_name;
+    private int score;
 
+    //Constructor
     public Player(String name) {
         this.player_name = name;
     }
 
+    //Getters
     public void getScore() {
         System.out.println("\n" + player_name + " - Score: " + score);
     }
@@ -26,9 +28,12 @@ public class Player {
         return "nombre del jugador = " + player_name + ", Puntaje = " + score;
     }
 
-    public void deleteScore(){
+    //Method that delete score
+    public void deleteScore() {
         score = 0;
     }
+
+    //Methos that set score
     public void setScore(int points) {
         score = score + points;
     }

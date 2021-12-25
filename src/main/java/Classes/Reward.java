@@ -10,16 +10,18 @@ package Classes;
  */
 public class Reward {
 
-    private int id_reward;
-    private String reward_name;
-    private int points;
+    private final int id_reward;
+    private final String reward_name;
+    private final int points;
 
+    //Constructor
     public Reward(int id_reward, String reward_name, int points) {
         this.id_reward = id_reward;
         this.reward_name = reward_name;
         this.points = points;
     }
 
+    //Getters
     public int getId_reward() {
         return id_reward;
     }

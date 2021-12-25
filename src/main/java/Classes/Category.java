@@ -12,23 +12,29 @@ import java.util.Random;
  */
 public class Category {
 
-    int level;
+    private final int level;
     String category_name;
-    Question question_arr[];
+    private final Question question_arr[];
 
+    //Constructor
     public Category(int level, String category_name, Question[] question_arr) {
         this.level = level;
         this.category_name = category_name;
         this.question_arr = question_arr;
     }
 
+    //Select a random question
     public int SelectRandomQuestion() {
+        
         Random r = new Random();
+        //select a random number 0-4
         int numero = r.nextInt(5);
+        //return a question
         return question_arr[numero].getQuestionAndAnswer();
 
     }
 
+    //getters
     public int getLevel() {
         return level;
     }
@@ -41,6 +47,7 @@ public class Category {
         return question_arr;
     }
 
+    //Print the category infromation
     public void ShowInfo(int i) {
         System.out.println(this.level + " - " + this.category_name);
         question_arr[i].getQuestionAndAnswer();

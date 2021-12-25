@@ -1,6 +1,8 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+    //Luis Sebastian Olivares Puello
+    //System engineer students
+    //Este es mi algoritmo de preguntas y respuestas con un banco de 10 categorias con 5 preguntas cada uno, es decir, 50 preguntas en total.
+
  */
 package Classes;
 
@@ -18,15 +20,30 @@ import java.util.Scanner;
  */
 public class Main {
 
+    static public File scores = new File("score.txt");
+
+    static public void WriteFile(Player player) {
+        //Create a file scores
+        try {
+            FileWriter fw = new FileWriter(scores.getAbsoluteFile(), true);
+            PrintWriter pw = new PrintWriter(fw);
+
+            pw.println(player.toString());
+            pw.close();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
     public static void main(String args[]) {
 
         //First I declarated the objets: categorys, rewards and the data of questions;
         //Create Rewards by level
-        Reward level_1 = new Reward(1, "Dinero", 12000);
-        Reward level_2 = new Reward(2, "Dinero", 24000);
-        Reward level_3 = new Reward(3, "Dinero", 36000);
-        Reward level_4 = new Reward(4, "Dinero", 48000);
-        Reward level_5 = new Reward(5, "Dinero", 60000);
+        Reward level_1 = new Reward(1, "Puntos", 12000);
+        Reward level_2 = new Reward(2, "Puntos", 24000);
+        Reward level_3 = new Reward(3, "Puntos", 36000);
+        Reward level_4 = new Reward(4, "Puntos", 48000);
+        Reward level_5 = new Reward(5, "Puntos", 60000);
 
         //Create Categorys - level 1 
         //Create entertainment questions 
@@ -56,7 +73,7 @@ public class Main {
             new Question("¿Quién pintó la obra mundialmente conocida con el nombre de \"Mona Lisa\" o \"Gioconda\"?", new String[]{"Pablo Picasso", "Fernando Botero", "Leonardo Da Vinci", "Vincent van Gogh"}, 3),
             new Question("¿Dónde se encontraba el cuadro \"El Grito\"?", new String[]{"España", "Francia", "Estados Unidos", "Argentina"}, 2),
             new Question("¿Qué obra NO pertenece a Shakespeare?", new String[]{"Hamlet", "Romeo y Julieta", "Julio Cesar", "Don quijote de la mancha"}, 4),
-            new Question("¿Quién era la diosa de la sabiduría en la mitología griega?", new String[]{"Ares", "Kratos", "Zeus", "Demeter"}, 4)};
+            new Question("¿Quién era el Dios de la sabiduría en la mitología griega?", new String[]{"Ares", "Kratos", "Zeus", "Demeter"}, 4)};
         //Create Category Literature and Art
         Category artAndLiterature = new Category(2, "Arte y Literatura", questionsAL);
 
@@ -94,9 +111,9 @@ public class Main {
         //Create Categorys - level 4
         //Create entertainment2 questions 
         Question[] questionsE2 = {
-            new Question("¿Cuál fue la primera película de Disney?", new String[]{"Blanca Nieves", "La Cenicienta", "Pinocho", "Bambi"}, 3),
-            new Question("¿Cómo se llama el cangrejo de la película \"La sirenita\" de Walt Disney?", new String[]{"Sebastan", "Lucas", "Juan", "Juancho"}, 1),
-            new Question("¿Qué tortuga llevaba el pañuelo azul en 'Las tortugas ninja'?", new String[]{"Leonardo", "Donatello", "Miguel Angel", "Raphael"}, 1),
+            new Question("¿Cuál fue la primera película de Disney?", new String[]{"Blanca Nieves", "La Cenicienta", "Pinocho", "Bambi"}, 1),
+            new Question("¿Cómo se llama el cangrejo de la película \"La sirenita\" de Walt Disney?", new String[]{"Lucas", "Sebastan", "Juan", "Juancho"}, 2),
+            new Question("¿Qué tortuga llevaba el pañuelo azul en 'Las tortugas ninja'?", new String[]{"Miguel Angel", "Donatello", "Leonardo", "Raphael"}, 3),
             new Question("¿Cómo se llamaba el cantante de Queen?", new String[]{"Bon Scott", "Bruce Dickinson", "Ozzy Osbourne", "Freddie Mercury"}, 4),
             new Question("¿Cómo se llamaba el primer gato de Los Simpsons?", new String[]{"Cuate", "Bola de nieve", "Pulgoso", "Pequeño ayudante de santa"}, 2)};
         //Create Category Entertainment2
@@ -142,9 +159,6 @@ public class Main {
 
         Round[] arrRound = {round_1, round_2, round_3, round_4, round_5};
 
-        //Create a file scores
-        File scores = new File("score.txt");
-
         boolean correct = false;
         do {
             Scanner scan = new Scanner(System.in);
@@ -152,7 +166,7 @@ public class Main {
             int select = scan.nextInt();
 
             switch (select) {
-
+                //case 1 is a new game
                 case 1:
                     System.out.println("\nPor Favor ingrese su nombre: ");
                     String name = scan.next();
@@ -161,38 +175,29 @@ public class Main {
                     Player player1 = new Player(name);
                     //Level Count
                     int level = 0;
+                    //loop trough the srounds array
                     for (Round round : arrRound) {
+                        //get score player
                         player1.getScore();
+                        //return a int, depending on the number that return we have a different result
                         int itsCorrect = round.selectCategory();
+                        //if itsCorrect is 1 the player win a round
                         if (itsCorrect == 1) {
                             player1.setScore(round.getReward());
                             level++;
-                        } else if (itsCorrect == 2) {
+                        } //if itsCorrect is 2 the player lose the round and end the game.
+                        else if (itsCorrect == 2) {
                             player1.deleteScore();
                             System.out.println("\nPerdiste, Juego Finalizado\nTu puntuacion:");
 
-                            try {
-                                FileWriter fw = new FileWriter(scores.getAbsoluteFile(), true);
-                                PrintWriter pw = new PrintWriter(fw);
-
-                                pw.println(player1.toString());
-                                pw.close();
-                            } catch (IOException e) {
-                                System.out.println(e);
-                            }
+                            //write the score in a file
+                            WriteFile(player1);
                             break;
                         } else {
                             System.out.println("\nDeacuerdo, Te has retirado\nTu puntuacion:");
 
-                            try {
-                                FileWriter fw = new FileWriter(scores.getAbsoluteFile(), true);
-                                PrintWriter pw = new PrintWriter(fw);
-
-                                pw.println(player1.toString());
-                                pw.close();
-                            } catch (IOException e) {
-                                System.out.println(e);
-                            }
+                            //write the score in a file
+                            WriteFile(player1);
                             break;
 
                         }
@@ -200,26 +205,20 @@ public class Main {
                     }
                     if (level == 5) {
                         System.out.println("\nFelicidades, Has acertado todas las preguntas\nTu puntuacion:");
-                        try {
-                            FileWriter fw = new FileWriter(scores.getAbsoluteFile(), true);
-                            PrintWriter pw = new PrintWriter(fw);
+                        //write the score in a file
+                        WriteFile(player1);
 
-                            pw.println(player1.toString());
-                            pw.close();
-                        } catch (IOException e) {
-                            System.out.println(e);
-                        }
                     }
                     player1.getScore();
                     correct = true;
                     break;
-
+                //case 2 show the scores
                 case 2:
                     System.out.println("puntuaciones");
-                    File f = new File("score.txt");
 
+                    //Read a file
                     try {
-                        FileReader fr = new FileReader(f);
+                        FileReader fr = new FileReader(scores);
                         BufferedReader br = new BufferedReader(fr);
 
                         String linea = br.readLine();
@@ -238,7 +237,9 @@ public class Main {
                     correct = true;
                     break;
 
+                //case 3 quit the game
                 case 3:
+                    //if
                     System.out.println("\n\nMuchas gracias por jugar");
                     correct = false;
                     break;

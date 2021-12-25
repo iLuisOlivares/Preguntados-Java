@@ -16,12 +16,14 @@ public class Question {
     private final String answer[];
     private final int correct_answer;
 
+    //Constructor
     public Question(String question, String[] answer, int correct_answer) {
         this.question = question;
         this.answer = answer;
         this.correct_answer = correct_answer;
     }
-
+    
+    //Getters
     public String getQuestion() {
         return question;
     }
@@ -30,6 +32,7 @@ public class Question {
         return correct_answer;
     }
 
+    //Check if the answer picked its correct
     public int CheckAnswer(int picked) {
 
         if (picked == correct_answer) {
@@ -41,21 +44,24 @@ public class Question {
         }
 
     }
-
+    //Show the question and answer 
     public int getQuestionAndAnswer() {
         int i = 1;
         Scanner scan = new Scanner(System.in);
-        System.out.println("\n"+question);
+        //Show question
+        System.out.println("\n" + question);
+        //Show all answer of question
         for (String ans : answer) {
             System.out.println(i + ") " + ans);
             i++;
         }
         System.out.println("\nRespuesta: ");
         int select = scan.nextInt();
-
+            
         boolean correct = true;
         do {
             if (select > 0 && select < 5) {
+                //check if answer is correct 
                 return CheckAnswer(select);
 
             } else {

@@ -4,25 +4,29 @@
  */
 package Classes;
 
+import java.util.Random;
+
 /**
  *
  * @author LuisO
  */
 public class Category {
+
     int level;
     String category_name;
     Question question_arr[];
-    
-    public Category(int level,String category_name,Question[] question_arr){
+
+    public Category(int level, String category_name, Question[] question_arr) {
         this.level = level;
         this.category_name = category_name;
         this.question_arr = question_arr;
     }
-    
-    public boolean SelectRandomQuestion(){
-        int numero = (int)(Math.random()*3);
-       return question_arr[numero].getQuestionAndAnswer();
-        
+
+    public boolean SelectRandomQuestion() {
+        Random r = new Random();
+        int numero = r.nextInt(5);
+        return question_arr[numero].getQuestionAndAnswer();
+
     }
 
     public int getLevel() {
@@ -36,11 +40,10 @@ public class Category {
     public Question[] getQuestion_arr() {
         return question_arr;
     }
-    
-    
-    public void ShowInfo(int i){
-        System.out.println(this.level+ " - " + this.category_name);
+
+    public void ShowInfo(int i) {
+        System.out.println(this.level + " - " + this.category_name);
         question_arr[i].getQuestionAndAnswer();
     }
-    
+
 }

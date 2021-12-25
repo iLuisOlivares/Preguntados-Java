@@ -9,6 +9,7 @@ package Classes;
  * @author LuisO
  */
 public class Reward {
+
     private int id_reward;
     private String reward_name;
     private int points;
@@ -30,7 +31,5 @@ public class Reward {
     public int getPoints() {
         return points;
     }
-    
- 
-    
+
 }
